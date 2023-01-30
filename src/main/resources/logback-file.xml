@@ -1,8 +1,8 @@
 <included>
     <!-- ファイルに出力するロガー -->
-    <property name="APP_LOG_FILENAME" value="${LOG_PATH:-logs}/app.log" />
+    <property name="APPLICATION_LOG_FILENAME" value="${LOG_PATH:-logs}/app.log" />
     <appender name="APPLICATION_LOG_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${APP_LOG_FILENAME}</file>
+        <file>${APPLICATION_LOG_FILENAME}</file>
         <encoder>
             <charset>UTF-8</charset>
             <append>true</append>
@@ -10,6 +10,7 @@
         </encoder>
     </appender>
 
+    <!-- 非同期でログをファイル出力する -->
     <appender name="ASYNC_APPLICATION_LOG_FILE" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="APPLICATION_LOG_FILE" />
     </appender>
