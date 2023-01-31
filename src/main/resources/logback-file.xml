@@ -7,7 +7,8 @@
         <encoder>
             <charset>UTF-8</charset>
             <append>true</append>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t]%X{request_thread} %logger{45}:%L - %msg %n</pattern>
+            <!-- patternの設定は https://logback.qos.ch/manual/layouts.html#ClassicPatternLayout を参照すること -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t]%X{request_thread} %logger:%L - %msg %n</pattern>
         </encoder>
     </appender>
 
