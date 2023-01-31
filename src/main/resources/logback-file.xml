@@ -1,6 +1,6 @@
 <included>
     <!-- ファイルに出力するロガー -->
-    <property name="APPLICATION_LOG_FILENAME" value="${LOG_PATH:-logs}/app.log" />
+    <property name="APPLICATION_LOG_FILENAME" value="${LOG_PATH:-logs}/${LOG_FILE:-app}.log" />
     <appender name="APPLICATION_LOG_FILE" class="ch.qos.logback.core.FileAppender">
         <file>${APPLICATION_LOG_FILENAME}</file>
         <encoder>
