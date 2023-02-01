@@ -6,24 +6,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<h1>All Members</h1>
+<h1>Member Detail</h1>
 <table>
     <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="member : ${members}">
+    <tr>
         <td th:text="${member.getId()}">Member id</td>
         <td th:text="${member.getName()}">Member name</td>
-        <td>
-            <a href="show.html" th:href="@{/members/{id}(id=*{member.getId()})}">show</a>
-        </td>
     </tr>
     </tbody>
 </table>
+<a href="index.html" th:href="@{/members}">back to Index</a>
 </body>
 </html>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class MemberController {
@@ -13,5 +14,11 @@ public class MemberController {
   public String index(Model model) {
     model.addAttribute("members", memberRepository.findAll());
     return "index";
+  }
+
+  @GetMapping("/members/{id}")
+  public String show(@PathVariable("id") Integer id, Model model) {
+    model.addAttribute("member", memberRepository.findById(id).get());
+    return "show";
   }
 }
