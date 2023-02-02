@@ -18,6 +18,7 @@ public class MemberController {
 
   @GetMapping("/members/{id}")
   public String show(@PathVariable("id") Integer id, Model model) {
+    // TODO memberが存在しない時の処理を実装する
     model.addAttribute("member", memberRepository.findById(id).get());
     return "show";
   }
