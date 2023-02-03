@@ -13,13 +13,13 @@ public class MemberController {
   @GetMapping("/members")
   public String index(Model model) {
     model.addAttribute("members", memberRepository.findAll());
-    return "index";
+    return "members/index";
   }
 
   @GetMapping("/members/{id}")
   public String show(@PathVariable("id") Integer id, Model model) {
     // TODO memberが存在しない時の処理を実装する
     model.addAttribute("member", memberRepository.findById(id).get());
-    return "show";
+    return "members/show";
   }
 }
