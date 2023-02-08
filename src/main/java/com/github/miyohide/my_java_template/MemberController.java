@@ -3,10 +3,7 @@ package com.github.miyohide.my_java_template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MemberController {
@@ -31,8 +28,21 @@ public class MemberController {
     return "members/new";
   }
 
+  @GetMapping("/members/{id}/edit")
+  public String edit(@PathVariable("id") Integer id, Model model) {
+    model.addAttribute("member", memberRepository.findById(id).get());
+    return "members/edit";
+  }
+
   @PostMapping("/members")
   public String create(@ModelAttribute Member member, Model model) {
+    Member savedMember = memberRepository.save(member);
+    model.addAttribute("member", savedMember);
+    return "members/show";
+  }
+
+  @PutMapping("/members/{id}")
+  public String update(@PathVariable("id") Integer id, @ModelAttribute Member member, Model model) {
     Member savedMember = memberRepository.save(member);
     model.addAttribute("member", savedMember);
     return "members/show";
