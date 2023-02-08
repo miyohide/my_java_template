@@ -21,6 +21,7 @@
         <td th:text="${member.getName()}">Member name</td>
         <td>
             <a href="show.html" th:href="@{/members/{id}(id=*{member.getId()})}">show</a>
+            <a href="edit.html" th:href="@{/members/{id}/edit(id=*{member.getId()})}">edit</a>
         </td>
     </tr>
     </tbody>
