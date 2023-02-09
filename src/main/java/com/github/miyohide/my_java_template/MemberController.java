@@ -41,8 +41,8 @@ public class MemberController {
     return "members/show";
   }
 
-  @PutMapping("/members/{id}")
-  public String update(@PathVariable("id") Integer id, @ModelAttribute Member member, Model model) {
+  @PutMapping("/members")
+  public String update(@ModelAttribute Member member, Model model) {
     Member savedMember = memberRepository.save(member);
     model.addAttribute("member", savedMember);
     return "members/show";
