@@ -22,6 +22,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
     // LogをJSON形式で出力する
     implementation 'net.logstash.logback:logstash-logback-encoder:7.2'
+    implementation 'ch.qos.logback:logback-access'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
