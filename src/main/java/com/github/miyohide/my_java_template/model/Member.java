@@ -1,4 +1,4 @@
-package com.github.miyohide.my_java_template;
+package com.github.miyohide.my_java_template.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

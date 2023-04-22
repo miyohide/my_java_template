@@ -1,5 +1,7 @@
-package com.github.miyohide.my_java_template;
+package com.github.miyohide.my_java_template.controller;
 
+import com.github.miyohide.my_java_template.model.Member;
+import com.github.miyohide.my_java_template.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

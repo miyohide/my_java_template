@@ -1,4 +1,4 @@
-package com.github.miyohide.my_java_template;
+package com.github.miyohide.my_java_template.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
