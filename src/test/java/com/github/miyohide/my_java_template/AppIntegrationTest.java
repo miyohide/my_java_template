@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
     webEnvironment = SpringBootTest.WebEnvironment.MOCK,
     classes = MyJavaTemplateApplication.class)
 @AutoConfigureMockMvc
-public class MemberControllerIntegrationTest {
+public class AppIntegrationTest {
   @Autowired private MockMvc mvc;
 
   @Test
