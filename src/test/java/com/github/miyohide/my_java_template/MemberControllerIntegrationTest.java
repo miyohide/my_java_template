@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 public class MemberControllerIntegrationTest {
   @Autowired private MockMvc mvc;
-  @Autowired private MemberRepository repository;
 
   @Test
   void test() throws Exception {
