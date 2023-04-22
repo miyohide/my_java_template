@@ -4,8 +4,9 @@ plugins {
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
     // Google Java Format用
-    id 'com.diffplug.spotless' version '6.14.0'
-    id 'io.freefair.lombok' version '6.6.1'
+    id 'com.diffplug.spotless' version '6.18.0'
+    // Lombokやdelombokの設定を自動的にしてくれる
+    id 'io.freefair.lombok' version '8.0.1'
     // ライブラリのバージョンチェック
     id 'com.github.ben-manes.versions' version '0.46.0'
 }
@@ -24,7 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.flywaydb:flyway-core'
     // LogをJSON形式で出力する
-    implementation 'net.logstash.logback:logstash-logback-encoder:7.2'
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.3'
     implementation 'ch.qos.logback:logback-access'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
