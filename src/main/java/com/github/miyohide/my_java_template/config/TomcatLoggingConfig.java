@@ -7,10 +7,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TomcatLoggingConfig {
-    @Bean
-    public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
-        TomcatServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();
-        tomcatServletWebServerFactory.addContextValves(new LogbackValve());
-        return tomcatServletWebServerFactory;
-    }
+  @Bean
+  public TomcatServletWebServerFactory tomcatServletWebServerFactory() {
+    TomcatServletWebServerFactory tomcatServletWebServerFactory =
+        new TomcatServletWebServerFactory();
+    tomcatServletWebServerFactory.addContextValves(new LogbackValve());
+    return tomcatServletWebServerFactory;
+  }
 }
