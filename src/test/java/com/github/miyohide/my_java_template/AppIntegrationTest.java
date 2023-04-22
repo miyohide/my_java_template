@@ -18,7 +18,7 @@ public class AppIntegrationTest {
   @Autowired private MockMvc mvc;
 
   @Test
-  void test() throws Exception {
+  void accessTopPageTest() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().string(containsString("All members page")));
