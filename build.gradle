@@ -1,56 +1,25 @@
 plugins {
-    id 'java'
-    // Spring Bootのバージョン
-    id 'org.springframework.boot' version '3.0.6'
-    id 'io.spring.dependency-management' version '1.1.0'
-    // Google Java Format用
-    id 'com.diffplug.spotless' version '6.18.0'
-    // Lombokやdelombokの設定を自動的にしてくれる
-    id 'io.freefair.lombok' version '8.0.1'
-    // ライブラリのバージョンチェック
-    id 'com.github.ben-manes.versions' version '0.46.0'
-    // Azure Web Appsへのデプロイ
-    id 'com.microsoft.azure.azurewebapp' version '1.7.1'
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.github.miyohide'
-version = '0.0.2'
-sourceCompatibility = '17'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.flywaydb:flyway-core'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.h2database:h2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
-}
-
-spotless {
-    java {
-        googleJavaFormat()
-    }
-}
-
-// Gradle Versions Pluginの設定。alpha版などは検出しないようにする
-dependencyUpdates.resolutionStrategy = {
-    componentSelection { rules ->
-        rules.all { ComponentSelection selection ->
-            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
-                selection.candidate.version =~ /(?i).*[.-]${qualifier}[.\d-]*/
-            }
-            if (rejected) {
-                selection.reject('Release candidate')
-            }
-        }
-    }
+	useJUnitPlatform()
 }
