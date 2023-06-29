@@ -25,6 +25,8 @@ dependencies {
 	// Database接続
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.postgresql:postgresql'
+	// Database Migration
+	implementation 'org.flywaydb:flyway-core'
 	// JSON形式でログを出力する
 	implementation 'ch.qos.logback:logback-classic:1.4.7'
 	implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
