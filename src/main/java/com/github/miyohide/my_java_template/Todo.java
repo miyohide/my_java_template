@@ -10,9 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @ToString
 @Table(name = "todos")
 public class Todo {
-  @With
-  @Id
-  private final Long id;
+  @With @Id private final Long id;
   private final String title;
   private final String body;
 }

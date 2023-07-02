@@ -1,19 +1,17 @@
 package com.github.miyohide.my_java_template;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 @DataJdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TodoRepositoryTest {
-  @Autowired
-  private TodoRepository todoRepository;
+  @Autowired private TodoRepository todoRepository;
 
   @Test
   void test() {
