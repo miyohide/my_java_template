@@ -27,6 +27,9 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	// Database Migration
 	implementation 'org.flywaydb:flyway-core'
+	// Retry処理の実装
+	implementation 'org.springframework.retry:spring-retry'
+	implementation 'org.springframework:spring-aspects'
 	// JSON形式でログを出力する
 	implementation 'ch.qos.logback:logback-classic:1.4.7'
 	implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
