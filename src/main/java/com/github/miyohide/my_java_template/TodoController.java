@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TodoController {
   private static final Logger log = LoggerFactory.getLogger(TodoController.class);
 
-  private final TodoRepository todoRepository;
+  private final TodoService todoService;
 
-  public TodoController(TodoRepository todoRepository) {
-    this.todoRepository = todoRepository;
+  public TodoController(TodoService todoService) {
+    this.todoService = todoService;
   }
 
   @GetMapping("/todos")
   public String index(Model model) {
-    Iterable<Todo> todos = todoRepository.findAll();
+    Iterable<Todo> todos = todoService.getAllTodo();
     model.addAttribute("todos", todos);
     return "todos/index";
   }
