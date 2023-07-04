@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- JSON形式でコンソールに出力する -->
     <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
             <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
@@ -8,7 +9,17 @@
             <appendLineSeparator>true</appendLineSeparator>
         </layout>
     </appender>
-    <root level="INFO">
-        <appender-ref ref="json" />
-    </root>
+    <!-- コンソールに出力する -->
+
+    <!-- 環境ごとで設定の切り替え -->
+    <springProfile name="production">
+        <!-- 本番環境の場合 -->
+        <root level="WARN">
+            <appender-ref ref="json" />
+        </root>
+    </springProfile>
+    <springProfile name="!production">
+        <!-- 本番環境以外の場合 -->
+        <include resource="org/springframework/boot/logging/logback/base.xml" />
+    </springProfile>
 </configuration>
