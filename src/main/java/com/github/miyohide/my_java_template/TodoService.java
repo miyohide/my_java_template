@@ -13,4 +13,8 @@ public class TodoService {
   public Iterable<Todo> getAllTodo() {
     return todoRepository.findAll();
   }
+
+  public Todo saveTodo(Todo todo) {
+    return todoRepository.save(todo);
+  }
 }
