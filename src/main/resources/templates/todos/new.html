@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <title>My Java Template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<form th:action="@{/todo}" th:object="${todo}" method="post">
+    <div>
+        <label for="title">Enter todo title</label>
+        <input type="text" name="title" id="title" th:field="*{title}" required>
+    </div>
+    <div>
+        <label for="body">Enter todo body</label>
+        <textarea type="text" name="body" id="body" th:field="*{body}" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
