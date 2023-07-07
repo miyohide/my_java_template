@@ -1,5 +1,6 @@
 package com.github.miyohide.my_java_template;
 
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +11,7 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
+  @Retryable
   public Iterable<Todo> getAllTodo() {
     return todoRepository.findAll();
   }
