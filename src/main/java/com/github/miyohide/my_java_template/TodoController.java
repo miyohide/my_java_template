@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class TodoController {
@@ -23,6 +26,17 @@ public class TodoController {
     Iterable<Todo> todos = todoService.getAllTodo();
     model.addAttribute("todos", todos);
     return "todos/index";
+  }
+
+  @GetMapping("/todos/{id}")
+  public String details(@PathVariable String id, Model model) {
+    Optional<Todo> todo = todoService.getTodoById(id);
+    if (todo.isPresent()) {
+      model.addAttribute("todo", todo.get());
+      return "todos/show";
+    } else {
+      return "redirect:" + "/todos";
+    }
   }
 
   @GetMapping("/todos/new")
