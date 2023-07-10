@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo show - My Java Template -</title>
+</head>
+<body>
+<p>Todo show:</p>
+<dl>
+    <dt>ID</dt>
+    <dl th:text="${todo.getId()}"></dl>
+
+    <dt>Title</dt>
+    <dl th:text="${todo.getTitle()}"></dl>
+
+    <dt>Body</dt>
+    <dl th:text="${todo.getBody()}"></dl>
+</dl>
+<a th:href="@{/todos}">Todo index page</a>
+</body>
+</html>
