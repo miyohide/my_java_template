@@ -19,7 +19,7 @@ public class TodoService {
   }
 
   public Optional<Todo> getTodoById(String id) {
-    return todoRepository.findById(Long.getLong(id));
+    return todoRepository.findById(Long.parseLong(id));
   }
 
   public Todo saveTodo(Todo todo) {
