@@ -35,7 +35,13 @@ public class TodoController {
       model.addAttribute("todo", todo.get());
       return "todos/show";
     } else {
-      return "redirect:" + "/todos";
+      // エラーメッセージの出力
+      model.addAttribute("error_message", "ID = " + id + "のTodoが見つかりません。");
+      model.addAttribute("alertClass", "alert-danger");
+      // todos/indexページのデータを設定する
+      Iterable<Todo> todos = todoService.getAllTodo();
+      model.addAttribute("todos", todos);
+      return "todos/index";
     }
   }
 
