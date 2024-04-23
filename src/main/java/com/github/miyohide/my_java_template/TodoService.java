@@ -1,9 +1,8 @@
 package com.github.miyohide.my_java_template;
 
+import java.util.Optional;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class TodoService {
