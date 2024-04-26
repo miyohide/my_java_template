@@ -1,51 +1,51 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.4'
-	id 'io.spring.dependency-management' version '1.1.0'
-	// google java format
-	id 'com.diffplug.spotless' version '6.25.0'
-	// lombokの設定を自動的に行う
-	id 'io.freefair.lombok' version '8.6'
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+    // google java format
+    id 'com.diffplug.spotless' version '6.25.0'
+    // lombokの設定を自動的に行う
+    id 'io.freefair.lombok' version '8.6'
 }
 
 group = 'com.github.miyohide'
 version = '0.0.1'
 
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	// Database接続
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.postgresql:postgresql'
-	// Database Migration
-	implementation 'org.flywaydb:flyway-core'
-	// Retry処理の実装
-	implementation 'org.springframework.retry:spring-retry'
-	implementation 'org.springframework:spring-aspects'
-	// JSON形式でログを出力する
-	implementation 'ch.qos.logback:logback-classic:1.5.6'
-	implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
-	implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
-	// 開発用ツール
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Database接続
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.postgresql:postgresql'
+    // Database Migration
+    implementation 'org.flywaydb:flyway-core'
+    // Retry処理の実装
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework:spring-aspects'
+    // JSON形式でログを出力する
+    // implementation 'ch.qos.logback:logback-classic:1.5.6'
+    // implementation 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
+    // implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+    // implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    // 開発用ツール
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 spotless {
-	java {
-		googleJavaFormat()
-	}
+    java {
+        googleJavaFormat()
+    }
 }
