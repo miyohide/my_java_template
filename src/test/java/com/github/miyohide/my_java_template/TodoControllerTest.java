@@ -30,8 +30,10 @@ public class TodoControllerTest {
     }
 
     @Test
-    void testIndex() {
-
+    void testIndex(@Autowired MockMvc mvc) throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/todos"))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(view().name("todos/index"));
     }
 
     @Test
