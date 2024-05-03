@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class TodoControllerTest {
     @Test
     void testCreateTodo(@Autowired MockMvc mvc) throws Exception {
+        // TODO この部分のテストは修正する必要あり
         mvc.perform(MockMvcRequestBuilders.get("/todos"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(view().name("todos/index"));
