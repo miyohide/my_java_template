@@ -1,1 +1,1 @@
-INSERT INTO todos (id, title, body) VALUES (100, 'title1', 'body1');
+INSERT INTO todos (title, body) VALUES ('title1', 'body1');
