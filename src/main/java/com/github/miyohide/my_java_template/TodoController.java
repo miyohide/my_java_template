@@ -42,7 +42,7 @@ public class TodoController {
 
   @GetMapping("/todos/new")
   public String newTodo(Model model) {
-    model.addAttribute("todo", new Todo(null, "", ""));
+    model.addAttribute("todo", new Todo(null, "", "", null, false));
     return "todos/new";
   }
 
