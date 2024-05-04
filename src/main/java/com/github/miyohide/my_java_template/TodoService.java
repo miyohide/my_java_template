@@ -22,8 +22,8 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
-  public Todo saveTodo(String title, String body, Long userId) throws Exception {
-    Todo todo = new Todo(null, title, body, userId, false);
+  public Todo saveTodo(String title, String body, Long userId, boolean completed) throws Exception {
+    Todo todo = new Todo(null, title, body, userId, completed);
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isEmpty()) {
       throw new Exception("User is Empty");
