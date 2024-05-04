@@ -21,7 +21,8 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
-  public Todo saveTodo(Todo todo) {
+  public Todo saveTodo(String title, String body, Long userId) {
+    Todo todo = new Todo(null, title, body, userId, false);
     return todoRepository.save(todo);
   }
 }

@@ -12,12 +12,16 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TodoRepositoryTest {
   @Autowired private TodoRepository todoRepository;
+  @Autowired private UserRepository userRepository;
 
   @Test
   void test() {
+    // 準備
+    User u = new User(null, "test user01");
+    u = userRepository.save(u);
     // 新規作成
     var before_insert_count = todoRepository.count();
-    Todo t1 = todoRepository.save(new Todo(null, "title1", "body1", null, false));
+    Todo t1 = todoRepository.save(new Todo(null, "title1", "body1", u.getId(), false));
     assertNotNull(t1.getId());
     // 新規作成のため、件数は増えること
     assertEquals(before_insert_count + 1, todoRepository.count());
@@ -27,7 +31,7 @@ public class TodoRepositoryTest {
     t2.ifPresent(todo -> assertEquals(t1.getTitle(), todo.getTitle()));
     // 更新
     var before_update_count = todoRepository.count();
-    Todo t3 = new Todo(t1.getId(), "updated title", "updated body", null, false);
+    Todo t3 = new Todo(t1.getId(), "updated title", "updated body", u.getId(), false);
     Todo updatedTodo = todoRepository.save(t3);
     // 更新のため、件数は増えないこと
     assertEquals(before_update_count, todoRepository.count());

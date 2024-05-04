@@ -48,7 +48,7 @@ public class TodoController {
 
   @PostMapping("/todo")
   public String createTodo(@ModelAttribute Todo todo) {
-    todoService.saveTodo(todo);
+    todoService.saveTodo(todo.getTitle(), todo.getBody(), 1L);
     return "redirect:/todos";
   }
 }
