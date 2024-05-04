@@ -17,7 +17,7 @@ public class TodoRepositoryTest {
   @Test
   void test() {
     // 準備
-    User u = new User(null, "test user01");
+    User u = new User(null, "test user01", 0L);
     u = userRepository.save(u);
     // 新規作成
     var before_insert_count = todoRepository.count();
