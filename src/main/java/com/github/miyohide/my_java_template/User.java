@@ -3,18 +3,18 @@ package com.github.miyohide.my_java_template;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-@RequiredArgsConstructor
-@Getter
+@AllArgsConstructor
+@Data
 @EqualsAndHashCode(of = {"id"})
 @ToString
 @Table(name = "users")
 public class User {
-    @Id private final Long id;
-    private final String name;
-    private final Long number_of_todos;
+    @Id private Long id;
+    private String name;
+    private Long number_of_todos;
 }
