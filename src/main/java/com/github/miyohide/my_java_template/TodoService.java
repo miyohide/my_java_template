@@ -14,7 +14,6 @@ public class TodoService {
     this.userRepository = userRepository;
   }
 
-  @Retryable
   public Iterable<Todo> getAllTodo() {
     return todoRepository.findAll();
   }
