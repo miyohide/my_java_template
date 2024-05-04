@@ -12,6 +12,8 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
+            <th>User</th>
+            <th>Complete</th>
             <th></th>
         </tr>
     </thead>
@@ -19,6 +21,8 @@
         <tr th:each="todo : ${todos}">
             <td th:text="${todo.getId()}"></td>
             <td th:text="${todo.getTitle()}"></td>
+            <td th:text="${todo.getUserId()}"></td>
+            <td th:text="${todo.isCompleted()}"></td>
             <td><a th:href="@{/todos/{id}(id=${todo.getId()})}">Show page</a> </td>
         </tr>
     </tbody>
