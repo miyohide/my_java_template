@@ -16,5 +16,5 @@ import lombok.ToString;
 public class User {
     @Id private Long id;
     private String name;
-    private Long number_of_todos;
+    private Long numberOfTodos;
 }
