@@ -1,5 +1,6 @@
 package com.github.miyohide.my_java_template;
 
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class TodoController {
   private final TodoService todoService;
+  private final UserService userService;
 
-  public TodoController(TodoService todoService) {
+  public TodoController(TodoService todoService, UserService userService) {
     this.todoService = todoService;
+    this.userService = userService;
   }
 
   @GetMapping("/todos")
@@ -43,12 +46,19 @@ public class TodoController {
   @GetMapping("/todos/new")
   public String newTodo(Model model) {
     model.addAttribute("todo", new Todo(null, "", "", null, false));
+    Map<String, Long> userMap = userService.getUserMap();
+    model.addAttribute("userMap", userMap);
     return "todos/new";
   }
 
   @PostMapping("/todo")
   public String createTodo(@ModelAttribute Todo todo) {
-    todoService.saveTodo(todo.getTitle(), todo.getBody(), 1L);
+    System.out.println(todo.toString());
+    try {
+      todoService.saveTodo(todo.getTitle(), todo.getBody(), todo.getUserId());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return "redirect:/todos";
   }
 }

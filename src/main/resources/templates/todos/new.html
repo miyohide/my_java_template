@@ -15,8 +15,8 @@
         <textarea type="text" name="body" id="body" th:field="*{body}" required></textarea>
     </div>
     <div>
-        <label for="user">Enter user</label>
-        <select id="user">
+        <label for="userId">Enter user</label>
+        <select id="userId" name="userId">
             <option th:value="0"></option>
             <option th:each="item : ${userMap}" th:value="${item.value}" th:text="${item.key}"></option>
         </select>

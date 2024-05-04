@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoService {
   private final TodoRepository todoRepository;
+  private final UserRepository userRepository;
 
-  public TodoService(TodoRepository todoRepository) {
+  public TodoService(TodoRepository todoRepository, UserRepository userRepository) {
     this.todoRepository = todoRepository;
+    this.userRepository = userRepository;
   }
 
   @Retryable
@@ -21,8 +23,16 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
-  public Todo saveTodo(String title, String body, Long userId) {
+  public Todo saveTodo(String title, String body, Long userId) throws Exception {
     Todo todo = new Todo(null, title, body, userId, false);
+    Optional<User> optionalUser = userRepository.findById(userId);
+    if (optionalUser.isEmpty()) {
+      throw new Exception("User is Empty");
+    }
+    User user = optionalUser.get();
+    user.setNumberOfTodos(user.getNumberOfTodos() + 1);
+    userRepository.save(user);
+
     return todoRepository.save(todo);
   }
 }
