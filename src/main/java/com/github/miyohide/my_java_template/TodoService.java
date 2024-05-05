@@ -22,7 +22,7 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
-  public Todo saveTodo(String title, String body, Long userId, boolean completed) throws Exception {
+  public Todo createTodo(String title, String body, Long userId, boolean completed) throws Exception {
     Todo todo = new Todo(null, title, body, userId, completed);
     Optional<User> optionalUser = userRepository.findById(userId);
     if (optionalUser.isEmpty()) {

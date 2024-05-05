@@ -54,7 +54,7 @@ public class TodoController {
   @PostMapping("/todo")
   public String createTodo(@ModelAttribute Todo todo) {
     try {
-      todoService.saveTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+      todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
     } catch (Exception e) {
       e.printStackTrace();
     }
