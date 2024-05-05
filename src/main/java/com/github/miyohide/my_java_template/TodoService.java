@@ -15,7 +15,7 @@ public class TodoService {
   }
 
   public Iterable<Todo> getAllTodo() {
-    return todoRepository.findAll();
+    return todoRepository.findAllByOrderById();
   }
 
   public Optional<Todo> getTodoById(String id) {
