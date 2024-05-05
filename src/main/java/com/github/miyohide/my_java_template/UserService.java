@@ -14,7 +14,7 @@ public class UserService {
     }
 
     public Map<String, Long> getUserMap() {
-        Iterable<User> users = userRepository.findAll();
+        Iterable<User> users = userRepository.findAllByOrderById();
         Map<String, Long> rval = new LinkedHashMap<>();
 
         for (User user : users) {
