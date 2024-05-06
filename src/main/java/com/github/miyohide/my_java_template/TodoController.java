@@ -4,19 +4,20 @@ import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TodoController {
   private final TodoService todoService;
   private final UserService userService;
+  private final UserRepository userRepository;
+  private final TodoRepository todoRepository;
 
-  public TodoController(TodoService todoService, UserService userService) {
+  public TodoController(TodoService todoService, UserService userService, UserRepository userRepository, TodoRepository todoRepository) {
     this.todoService = todoService;
     this.userService = userService;
+    this.userRepository = userRepository;
+    this.todoRepository = todoRepository;
   }
 
   @GetMapping("/todos")
@@ -57,6 +58,20 @@ public class TodoController {
       todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
     } catch (Exception e) {
       e.printStackTrace();
+    }
+    return "redirect:/todos";
+  }
+
+  @DeleteMapping("/todos/{id}")
+  public String deleteTodo(@PathVariable String id) {
+    Optional<Todo> todo = todoService.getTodoById(id);
+    if (todo.isPresent()) {
+      User user = userRepository.findById(todo.get().getUserId()).orElse(null);
+      if (user != null) {
+        user.setNumberOfTodos(user.getNumberOfTodos() - 1);
+      }
+      userRepository.save(user);
+      todoRepository.delete(todo.get());
     }
     return "redirect:/todos";
   }

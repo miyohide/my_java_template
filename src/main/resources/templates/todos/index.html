@@ -23,7 +23,12 @@
             <td th:text="${todo.getTitle()}"></td>
             <td th:text="${todo.getUserId()}"></td>
             <td th:text="${todo.isCompleted()}"></td>
-            <td><a th:href="@{/todos/{id}(id=${todo.getId()})}">Show page</a> </td>
+            <td>
+                <a th:href="@{/todos/{id}(id=${todo.getId()})}">Show page</a>
+                <form th:action="@{/todos/{id}(id=${todo.getId()})}" th:method="delete">
+                    <input type="submit" value="削除">
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>
