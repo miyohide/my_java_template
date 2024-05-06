@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class TodoController {
   private final TodoService todoService;
   private final UserService userService;
-  private final UserRepository userRepository;
-  private final TodoRepository todoRepository;
 
-  public TodoController(TodoService todoService, UserService userService, UserRepository userRepository, TodoRepository todoRepository) {
+  public TodoController(TodoService todoService, UserService userService) {
     this.todoService = todoService;
     this.userService = userService;
-    this.userRepository = userRepository;
-    this.todoRepository = todoRepository;
   }
 
   @GetMapping("/todos")
@@ -66,12 +62,12 @@ public class TodoController {
   public String deleteTodo(@PathVariable String id) {
     Optional<Todo> todo = todoService.getTodoById(id);
     if (todo.isPresent()) {
-      User user = userRepository.findById(todo.get().getUserId()).orElse(null);
+      User user = userService.getUserById(todo.get().getUserId());
       if (user != null) {
         user.setNumberOfTodos(user.getNumberOfTodos() - 1);
       }
-      userRepository.save(user);
-      todoRepository.delete(todo.get());
+      userService.updateUser(user);
+      todoService.deleteTodo(todo.get().getId());
     }
     return "redirect:/todos";
   }

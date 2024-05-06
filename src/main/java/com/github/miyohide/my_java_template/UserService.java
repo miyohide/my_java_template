@@ -23,4 +23,12 @@ public class UserService {
 
         return rval;
     }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
 }
