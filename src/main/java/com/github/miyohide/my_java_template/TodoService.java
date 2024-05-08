@@ -36,6 +36,14 @@ public class TodoService {
   }
 
   public void deleteTodo(Long id) {
-    todoRepository.deleteById(id);
+    Todo todo = todoRepository.findById(id).orElse(null);
+    if (todo != null) {
+      User user = userRepository.findById(todo.getUserId()).orElse(null);
+      if (user != null) {
+        user.setNumberOfTodos(user.getNumberOfTodos() - 1);
+      }
+      userRepository.save(user);
+      todoRepository.deleteById(id);
+    }
   }
 }

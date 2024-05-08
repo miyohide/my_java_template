@@ -60,15 +60,7 @@ public class TodoController {
 
   @DeleteMapping("/todos/{id}")
   public String deleteTodo(@PathVariable String id) {
-    Optional<Todo> todo = todoService.getTodoById(id);
-    if (todo.isPresent()) {
-      User user = userService.getUserById(todo.get().getUserId());
-      if (user != null) {
-        user.setNumberOfTodos(user.getNumberOfTodos() - 1);
-      }
-      userService.updateUser(user);
-      todoService.deleteTodo(todo.get().getId());
-    }
+    todoService.deleteTodo(Long.parseLong(id));
     return "redirect:/todos";
   }
 }
