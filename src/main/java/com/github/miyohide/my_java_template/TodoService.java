@@ -40,8 +40,8 @@ public class TodoService {
       User user = userRepository.findById(todo.getUserId()).orElse(null);
       if (user != null) {
         user.setNumberOfTodos(user.getNumberOfTodos() - 1);
+        userRepository.save(user);
       }
-      userRepository.save(user);
       todoRepository.deleteById(id);
     }
   }
