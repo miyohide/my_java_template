@@ -21,13 +21,12 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
-  public Todo createTodo(String title, String body, Long userId, boolean completed) throws Exception {
+  public Todo createTodo(String title, String body, Long userId, boolean completed) {
     Todo todo = new Todo(null, title, body, userId, completed);
-    Optional<User> optionalUser = userRepository.findById(userId);
-    if (optionalUser.isEmpty()) {
-      throw new Exception("User is Empty");
+    User user = userRepository.findById(userId).orElse(null);
+    if (user == null) {
+      return null;
     }
-    User user = optionalUser.get();
     user.setNumberOfTodos(user.getNumberOfTodos() + 1);
     userRepository.save(user);
 

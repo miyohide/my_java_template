@@ -50,12 +50,13 @@ public class TodoController {
 
   @PostMapping("/todo")
   public String createTodo(@ModelAttribute Todo todo) {
-    try {
-      todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
-    } catch (Exception e) {
-      e.printStackTrace();
+    Todo createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+    if (createdTodo != null) {
+      return "redirect:/todos/" + createdTodo.getId();
+    } else {
+      // TODO 戻り先は要検討
+      return "todos/index";
     }
-    return "redirect:/todos";
   }
 
   @DeleteMapping("/todos/{id}")
