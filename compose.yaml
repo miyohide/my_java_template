@@ -1,13 +1,19 @@
 services:
   db:
-    image: postgres:15-alpine
+#    image: postgres:15-alpine
+#    ports:
+#      - '5432:5432'
+#    volumes:
+#      - db-store:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_USER: pguser
+#      POSTGRES_PASSWORD: passw0rd
+#      POSTGRES_DB: dev
+    image: mysql:8.0
     ports:
-      - '5432:5432'
-    volumes:
-      - db-store:/var/lib/postgresql/data
+      - '3306:3306'
     environment:
-      POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: passw0rd
-      POSTGRES_DB: dev
-volumes:
-  db-store:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: dev
+#volumes:
+#  db-store:
