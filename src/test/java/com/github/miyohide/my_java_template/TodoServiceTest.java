@@ -1,7 +1,6 @@
 package com.github.miyohide.my_java_template;
 
 import com.google.common.collect.Iterables;
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
