@@ -42,9 +42,7 @@ class TodoServiceTest {
     var results = todoService.getAllTodo();
     assertEquals(2, Iterables.size(results));
     assertThat(results, Matchers.contains(todo1, todo2));
-    assertAll(() -> {
-      verify(todoRepository, times(1));
-    });
+    verify(todoRepository, times(1));
   }
 
   @Test
