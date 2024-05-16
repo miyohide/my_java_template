@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,6 +48,13 @@ class TodoServiceTest {
 
   @Test
   void getTodoById() {
+    Todo todo1 = new Todo(1L, "title1", "body1", 1L, true);
+    when(todoRepository.findById(1L)).thenReturn(Optional.of(todo1));
+
+    var result = todoService.getTodoById("1");
+    assertTrue(result.isPresent());
+    assertThat(result.get(), Matchers.is(todo1));
+    verify(todoRepository, times(1)).findById(1L);
   }
 
   @Test
