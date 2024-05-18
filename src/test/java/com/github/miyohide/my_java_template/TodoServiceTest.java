@@ -59,6 +59,12 @@ class TodoServiceTest {
 
   @Test
   void createTodo() {
+    User user1 = new User(1L, "name1", 0L);
+    when(userRepository.findById(1L)).thenReturn(Optional.of(user1));
+    when(todoRepository.save(any(Todo.class))).thenAnswer(i -> i.getArguments()[0]);
+    var result = todoService.createTodo("title1", "body1", 1L, false);
+
+    assertNotNull(result);
   }
 
   @Test
