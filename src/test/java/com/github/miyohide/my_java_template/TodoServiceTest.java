@@ -65,6 +65,8 @@ class TodoServiceTest {
     var result = todoService.createTodo("title1", "body1", 1L, false);
 
     assertNotNull(result);
+    verify(todoRepository, times(1)).save(any(Todo.class));
+    verify(userRepository, times(1)).save(any(User.class));
   }
 
   @Test
