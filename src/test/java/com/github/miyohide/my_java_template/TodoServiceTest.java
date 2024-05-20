@@ -7,12 +7,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.hamcrest.MockitoHamcrest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -66,7 +69,10 @@ class TodoServiceTest {
 
     assertNotNull(result);
     verify(todoRepository, times(1)).save(any(Todo.class));
-    verify(userRepository, times(1)).save(any(User.class));
+    verify(userRepository, times(1)).save(
+            MockitoHamcrest.argThat(
+                    hasProperty("numberOfTodos", equalTo(1L))
+            ));
   }
 
   @Test
