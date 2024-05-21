@@ -77,5 +77,19 @@ class TodoServiceTest {
 
   @Test
   void deleteTodo() {
+    Todo todo1 = new Todo(1L, "title1", "body1", 1L, true);
+    User user1 = new User(1L, "name1", 2L);
+    when(todoRepository.findById(1L)).thenReturn(Optional.of(todo1));
+    when(userRepository.findById(1L)).thenReturn(Optional.of(user1));
+
+    todoService.deleteTodo(1L);
+    verify(todoRepository, times(1)).findById(1L);
+    verify(userRepository, times(1)).findById(1L);
+    verify(userRepository, times(1)).save(
+            MockitoHamcrest.argThat(
+                    hasProperty("numberOfTodos", equalTo(1L))
+            )
+    );
+    verify(todoRepository, times(1)).deleteById(1L);
   }
 }
