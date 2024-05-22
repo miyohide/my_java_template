@@ -2,6 +2,7 @@ package com.github.miyohide.my_java_template;
 
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TodoService {
@@ -21,6 +22,7 @@ public class TodoService {
     return todoRepository.findById(Long.parseLong(id));
   }
 
+  @Transactional
   public Todo createTodo(String title, String body, Long userId, boolean completed) {
     Todo todo = new Todo(null, title, body, userId, completed);
     User user = userRepository.findById(userId).orElse(null);
