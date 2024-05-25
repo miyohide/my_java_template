@@ -2,11 +2,14 @@ package com.github.miyohide.my_java_template;
 
 import java.util.Map;
 import java.util.Optional;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Slf4j
 public class TodoController {
   private final TodoService todoService;
   private final UserService userService;
@@ -50,7 +53,12 @@ public class TodoController {
 
   @PostMapping("/todo")
   public String createTodo(@ModelAttribute Todo todo) {
-    Todo createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+    Todo createdTodo = null;
+    try {
+      createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+    } catch (Exception e) {
+      log.warn("todo creation failed. message = " + e.getMessage());
+    }
     if (createdTodo != null) {
       return "redirect:/todos/" + createdTodo.getId();
     } else {
