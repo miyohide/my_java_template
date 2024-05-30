@@ -1,14 +1,20 @@
 package com.github.miyohide.my_java_template;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import javax.sql.DataSource;
+
+import java.sql.Connection;
+import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
@@ -21,14 +27,36 @@ public class TodoServiceTransactionalTest {
   private MockMvc mockMvc;
 
   @Autowired
+  private DataSource dataSource;
+
+  @Autowired
   private TodoController todoController;
   @SpyBean
   private TodoRepository todoRepository;
   @Autowired
   private UserRepository userRepository;
 
+  @BeforeEach
+  public void setUp() throws Exception {
+    try (
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+    ) {
+      statement.execute("INSERT INTO users VALUES (999, 'test user 999', 0)");
+    }
+  }
+
+  @AfterEach
+  public void tearDown() throws Exception {
+    try (
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            ) {
+      statement.execute("DELETE FROM users WHERE id = 999");
+    }
+  }
+
   @Test
-  @Sql(value = "classpath:/fixtures/init_users.sql")
   public void testCreateTodo() throws Exception {
     // エラー発生設定
     doThrow(new RuntimeException("error message")).when(todoRepository)
