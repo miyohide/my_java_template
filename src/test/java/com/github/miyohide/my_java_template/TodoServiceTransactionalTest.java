@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TodoServiceTransactionalTest {
-  private MockMvc mockMvc;
 
   @Autowired
   private DataSource dataSource;
@@ -62,7 +61,7 @@ public class TodoServiceTransactionalTest {
     doThrow(new RuntimeException("error message")).when(todoRepository)
             .save(Mockito.any(Todo.class));
 
-    mockMvc = MockMvcBuilders.standaloneSetup(todoController).build();
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(todoController).build();
     User user = userRepository.findById(999L).get();
     assertEquals(0L, user.getNumberOfTodos());
     // リクエスト発行
