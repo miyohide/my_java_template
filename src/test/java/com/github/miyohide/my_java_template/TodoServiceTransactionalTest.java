@@ -39,7 +39,7 @@ public class TodoServiceTransactionalTest {
   public void setUp() throws Exception {
     try (
             Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
+            Statement statement = connection.createStatement()
     ) {
       statement.execute("INSERT INTO users VALUES (999, 'test user 999', 0)");
     }
