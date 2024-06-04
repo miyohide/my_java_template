@@ -54,10 +54,15 @@ public class TodoController {
   }
 
   @PostMapping("/todo")
-  public String createTodo(@ModelAttribute @Validated Todo todo, BindingResult bindingResult) {
+  public String createTodo(
+          Model model,
+          @ModelAttribute @Validated Todo todo,
+          BindingResult bindingResult) {
     Todo createdTodo = null;
     if (bindingResult.hasErrors()) {
       log.warn("bindingResult: {}", bindingResult);
+      model.addAttribute(todo);
+      return "todos/new";
     }
     try {
       createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
