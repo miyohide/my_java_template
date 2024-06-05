@@ -47,7 +47,7 @@ public class TodoController {
 
   @GetMapping("/todos/new")
   public String newTodo(Model model) {
-    model.addAttribute("todo", new Todo(null, "", "", null, false));
+    model.addAttribute(new Todo(null, "", "", null, false));
     Map<String, Long> userMap = userService.getUserMap();
     model.addAttribute("userMap", userMap);
     return "todos/new";
