@@ -8,7 +8,7 @@
 <form th:action="@{/todo}" th:object="${todo}" method="post">
     <ul>
         <li th:each="error : ${#fields.detailedErrors()}">
-            <span th:text="${error.message}">Error message</span>
+            <span th:text="|${error.fieldName} - ${error.message}|">Error message</span>
         </li>
     </ul>
     <div>
