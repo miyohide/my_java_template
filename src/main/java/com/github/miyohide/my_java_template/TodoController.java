@@ -61,7 +61,6 @@ public class TodoController {
     Todo createdTodo = null;
     // validationチェック
     if (bindingResult.hasErrors()) {
-      log.warn("bindingResult: {}", bindingResult);
       model.addAttribute(todo);
       return "todos/new";
     }
