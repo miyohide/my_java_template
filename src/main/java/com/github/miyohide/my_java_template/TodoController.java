@@ -65,8 +65,12 @@ public class TodoController {
       model.addAttribute(todo);
       return "todos/new";
     }
-    // 保存処理
-    createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+    try {
+      // 保存処理
+      createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+    } catch (Exception e) {
+      log.warn("TodoService#createTodo() is fail: {}", e.getMessage());
+    }
     if (createdTodo != null) {
       // 保存できた場合
       return "redirect:/todos/" + createdTodo.getId();
