@@ -59,21 +59,21 @@ public class TodoController {
           @ModelAttribute @Validated Todo todo,
           BindingResult bindingResult) {
     Todo createdTodo = null;
+    // validationチェック
     if (bindingResult.hasErrors()) {
       log.warn("bindingResult: {}", bindingResult);
       model.addAttribute(todo);
       return "todos/new";
     }
-    try {
-      createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
-    } catch (Exception e) {
-      log.warn("todo creation failed. message = " + e.getMessage());
-    }
+    // 保存処理
+    createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
     if (createdTodo != null) {
+      // 保存できた場合
       return "redirect:/todos/" + createdTodo.getId();
     } else {
-      // TODO 戻り先は要検討
-      return "todos/index";
+      // 保存に失敗した場合
+      model.addAttribute(todo);
+      return "todos/new";
     }
   }
 
