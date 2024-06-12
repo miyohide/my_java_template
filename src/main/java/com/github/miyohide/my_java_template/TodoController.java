@@ -68,13 +68,10 @@ public class TodoController {
       // 保存処理。transactionalを有効にするために何らかの問題発生時には例外を吐くようにしており、
       // try-catchで囲んであげる必要がある。
       createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
-    } catch (Exception e) {
-      log.warn("TodoService#createTodo() is fail: {}", e.getMessage());
-    }
-    if (createdTodo != null) {
       // 保存できた場合
       return "redirect:/todos/" + createdTodo.getId();
-    } else {
+    } catch (Exception e) {
+      log.warn("TodoService#createTodo() is fail: {}", e.getMessage());
       // 保存に失敗した場合
       model.addAttribute(todo);
       return "todos/new";
