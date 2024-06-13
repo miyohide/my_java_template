@@ -62,6 +62,8 @@ public class TodoController {
     // validationチェック
     if (bindingResult.hasErrors()) {
       model.addAttribute(todo);
+      Map<String, Long> userMap = userService.getUserMap();
+      model.addAttribute("userMap", userMap);
       return "todos/new";
     }
     try {
