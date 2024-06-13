@@ -74,6 +74,8 @@ public class TodoController {
       log.warn("TodoService#createTodo() is fail: {}", e.getMessage());
       // 保存に失敗した場合
       model.addAttribute(todo);
+      Map<String, Long> userMap = userService.getUserMap();
+      model.addAttribute("userMap", userMap);
       return "todos/new";
     }
   }
