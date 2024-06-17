@@ -49,12 +49,6 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-// see. https://github.com/spring-projects/spring-boot/issues/39095
-// see. https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention
-//tasks.withType(JavaCompile).configureEach {
-//    options.compilerArgs.add("-parameters")
-//}
-
 spotless {
     java {
         googleJavaFormat()
