@@ -28,8 +28,8 @@ public class TodoControllerTest {
         try (
                 Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement()) {
-            statement.execute("INSERT INTO users VALUE (999, 'test user 999', 0)");
-            statement.execute("INSERT INTO todos VALUES (999, 'title', 'body', 999, false)");
+            statement.execute("INSERT INTO users VALUE (9999, 'test user 999', 0)");
+            statement.execute("INSERT INTO todos VALUES (9999, 'title', 'body', 9999, false)");
         }
     }
 
@@ -38,8 +38,8 @@ public class TodoControllerTest {
         try (
                 Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement();) {
-            statement.execute("DELETE FROM users WHERE id = 999");
-            statement.execute("DELETE FROM todos WHERE id = 999");
+                    statement.execute("DELETE FROM todos WHERE id = 9999");
+                    statement.execute("DELETE FROM users WHERE id = 9999");
         }
     }
 
