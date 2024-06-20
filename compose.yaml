@@ -6,7 +6,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: passw0rd
     volumes:
+      - mysql-volume:/var/lib/mysql
       - ./mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mysql-volume:
 
   # dbtest:
   #   image: mysql:8.0
