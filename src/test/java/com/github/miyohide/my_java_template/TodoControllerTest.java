@@ -52,7 +52,7 @@ public class TodoControllerTest {
 
     @Test
     void testDetails(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/todos/999"))
+        mvc.perform(MockMvcRequestBuilders.get("/todos/9999"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(view().name("todos/show"));
     }
