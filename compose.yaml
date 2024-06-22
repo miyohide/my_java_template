@@ -11,11 +11,3 @@ services:
 
 volumes:
   mysql-volume:
-
-  # dbtest:
-  #   image: mysql:8.0
-  #   ports:
-  #     - '3306:3306'
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: passw0rd
-  #     MYSQL_DATABASE: devtest
