@@ -1,12 +1,11 @@
 package com.github.miyohide.my_java_template;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @AllArgsConstructor
 @Data
@@ -14,7 +13,7 @@ import lombok.ToString;
 @ToString
 @Table(name = "users")
 public class User {
-    @Id private Long id;
-    private String name;
-    private Long numberOfTodos;
+  @Id private Long id;
+  private String name;
+  private Long numberOfTodos;
 }

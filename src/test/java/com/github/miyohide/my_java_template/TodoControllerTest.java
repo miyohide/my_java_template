@@ -4,9 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.Connection;
 import java.sql.Statement;
-
 import javax.sql.DataSource;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,52 +18,47 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TodoControllerTest {
-    @Autowired
-    private DataSource dataSource;
+  @Autowired private DataSource dataSource;
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        try (
-                Connection connection = dataSource.getConnection();
-                Statement statement = connection.createStatement()) {
-            statement.execute("INSERT INTO users VALUE (9999, 'test user 999', 0)");
-            statement.execute("INSERT INTO todos VALUES (9999, 'title', 'body', 9999, false)");
-        }
+  @BeforeEach
+  public void setUp() throws Exception {
+    try (Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement()) {
+      statement.execute("INSERT INTO users VALUE (9999, 'test user 999', 0)");
+      statement.execute("INSERT INTO todos VALUES (9999, 'title', 'body', 9999, false)");
     }
+  }
 
-    @AfterEach
-    public void tearDown() throws Exception {
-        try (
-                Connection connection = dataSource.getConnection();
-                Statement statement = connection.createStatement();) {
-                    statement.execute("DELETE FROM todos WHERE id = 9999");
-                    statement.execute("DELETE FROM users WHERE id = 9999");
-        }
+  @AfterEach
+  public void tearDown() throws Exception {
+    try (Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement(); ) {
+      statement.execute("DELETE FROM todos WHERE id = 9999");
+      statement.execute("DELETE FROM users WHERE id = 9999");
     }
+  }
 
-    @Test
-    void testCreateTodo(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/todos"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(view().name("todos/index"));
-    }
+  @Test
+  void testCreateTodo(@Autowired MockMvc mvc) throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/todos"))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(view().name("todos/index"));
+  }
 
-    @Test
-    void testDetails(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/todos/9999"))
+  @Test
+  void testDetails(@Autowired MockMvc mvc) throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/todos/9999"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(view().name("todos/show"));
-    }
+  }
 
-    @Test
-    void testIndex(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/todos"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(view().name("todos/index"));
-    }
+  @Test
+  void testIndex(@Autowired MockMvc mvc) throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/todos"))
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(view().name("todos/index"));
+  }
 
-    @Test
-    void testNewTodo() {
-
-    }
+  @Test
+  void testNewTodo() {}
 }

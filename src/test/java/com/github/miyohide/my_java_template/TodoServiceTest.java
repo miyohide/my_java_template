@@ -1,6 +1,15 @@
 package com.github.miyohide.my_java_template;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import com.google.common.collect.Iterables;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,25 +18,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.hamcrest.MockitoHamcrest;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 class TodoServiceTest {
-  @InjectMocks
-  private TodoService todoService;
+  @InjectMocks private TodoService todoService;
 
-  @Mock
-  private TodoRepository todoRepository;
+  @Mock private TodoRepository todoRepository;
 
-  @Mock
-  private UserRepository userRepository;
+  @Mock private UserRepository userRepository;
 
   @BeforeEach
   void setUp() {
@@ -69,10 +65,8 @@ class TodoServiceTest {
 
     assertNotNull(result);
     verify(todoRepository, times(1)).save(any(Todo.class));
-    verify(userRepository, times(1)).save(
-            MockitoHamcrest.argThat(
-                    hasProperty("numberOfTodos", equalTo(1L))
-            ));
+    verify(userRepository, times(1))
+        .save(MockitoHamcrest.argThat(hasProperty("numberOfTodos", equalTo(1L))));
   }
 
   @Test
@@ -85,11 +79,8 @@ class TodoServiceTest {
     todoService.deleteTodo(1L);
     verify(todoRepository, times(1)).findById(1L);
     verify(userRepository, times(1)).findById(1L);
-    verify(userRepository, times(1)).save(
-            MockitoHamcrest.argThat(
-                    hasProperty("numberOfTodos", equalTo(1L))
-            )
-    );
+    verify(userRepository, times(1))
+        .save(MockitoHamcrest.argThat(hasProperty("numberOfTodos", equalTo(1L))));
     verify(todoRepository, times(1)).deleteById(1L);
   }
 }

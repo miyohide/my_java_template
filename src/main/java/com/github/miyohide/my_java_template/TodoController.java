@@ -2,7 +2,6 @@ package com.github.miyohide.my_java_template;
 
 import java.util.Map;
 import java.util.Optional;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,9 +54,7 @@ public class TodoController {
 
   @PostMapping("/todo")
   public String createTodo(
-          Model model,
-          @ModelAttribute @Validated Todo todo,
-          BindingResult bindingResult) {
+      Model model, @ModelAttribute @Validated Todo todo, BindingResult bindingResult) {
     Todo createdTodo = null;
     // validationチェック
     if (bindingResult.hasErrors()) {
@@ -69,7 +66,9 @@ public class TodoController {
     try {
       // 保存処理。transactionalを有効にするために何らかの問題発生時には例外を吐くようにしており、
       // try-catchで囲んであげる必要がある。
-      createdTodo = todoService.createTodo(todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
+      createdTodo =
+          todoService.createTodo(
+              todo.getTitle(), todo.getBody(), todo.getUserId(), todo.isCompleted());
       // 保存できた場合
       return "redirect:/todos/" + createdTodo.getId();
     } catch (Exception e) {
