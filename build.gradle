@@ -5,7 +5,9 @@ plugins {
     // google java format
     id 'com.diffplug.spotless' version '6.25.0'
     // lombokの設定を自動的に行う
-    id 'io.freefair.lombok' version '8.6'
+    id 'io.freefair.lombok' version '8.11'
+    // バージョンアップを確認
+    id 'com.github.ben-manes.versions' version '0.51.0'
 }
 
 group = 'com.github.miyohide'
