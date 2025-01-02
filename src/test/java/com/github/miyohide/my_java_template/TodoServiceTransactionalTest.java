@@ -40,7 +40,7 @@ public class TodoServiceTransactionalTest {
   @AfterEach
   public void tearDown() throws Exception {
     try (Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement() ) {
+        Statement statement = connection.createStatement()) {
       statement.execute("DELETE FROM users WHERE id = 999");
     }
   }
