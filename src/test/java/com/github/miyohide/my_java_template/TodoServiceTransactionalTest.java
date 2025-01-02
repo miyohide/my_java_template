@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -26,7 +26,7 @@ public class TodoServiceTransactionalTest {
   @Autowired private DataSource dataSource;
 
   @Autowired private TodoController todoController;
-  @SpyBean private TodoRepository todoRepository;
+  @MockitoSpyBean private TodoRepository todoRepository;
   @Autowired private UserRepository userRepository;
 
   @BeforeEach

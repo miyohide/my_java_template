@@ -24,8 +24,10 @@ public class TodoControllerTest {
   public void setUp() throws Exception {
     try (Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement()) {
-      statement.execute("INSERT INTO users VALUE (9999, 'test user 999', 0)");
-      statement.execute("INSERT INTO todos VALUES (9999, 'title', 'body', 9999, false)");
+      statement.execute(
+          "INSERT INTO users (id, name, number_of_todos) VALUES (9999, 'test user 999', 0)");
+      statement.execute(
+          "INSERT INTO todos (id, title, body, user_id, completed) VALUES (9999, 'title', 'body', 9999, false)");
     }
   }
 
